@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Righthere_Demo.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="LoginPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label FontSize="Medium" Text="อีเมล" />
+            <Entry
+                x:Name="emailEntry"
+                Keyboard="Email"
+                Placeholder="กรอกอีเมล" />
+
+            <Label FontSize="Medium" Text="รหัสผ่าน" />
+            <Entry
+                x:Name="passwordEntry"
+                IsPassword="True"
+                Placeholder="กรอกรหัสผ่าน" />
+
+            <Button
+                BackgroundColor="#34C759"
+                Clicked="OnLoginClicked"
+                Text="เข้าสู่ระบบ"
+                TextColor="White" />
+
+            <Label
+                HorizontalOptions="Center"
+                Text="ยังไม่มีบัญชี? สมัครสมาชิก"
+                TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRegisterLinkTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
