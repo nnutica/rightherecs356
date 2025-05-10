@@ -1,33 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="Righthere_Demo.Views.RegisterPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="RegisterPage">
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-
-            <Label FontSize="Medium" Text="ชื่อผู้ใช้" />
-            <Entry x:Name="usernameEntry" Placeholder="กรอกชื่อผู้ใช้" />
-
-            <Label FontSize="Medium" Text="อีเมล" />
-            <Entry
-                x:Name="emailEntry"
-                Keyboard="Email"
-                Placeholder="กรอกอีเมล" />
-
-            <Label FontSize="Medium" Text="รหัสผ่าน" />
-            <Entry
-                x:Name="passwordEntry"
-                IsPassword="True"
-                Placeholder="กรอกรหัสผ่าน" />
-
-            <Button
-                BackgroundColor="#007AFF"
-                Clicked="OnRegisterClicked"
-                Text="สมัครสมาชิก"
-                TextColor="White" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Righthere_Demo.Views.RegisterPage"
+             Title="RegisterPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
 </ContentPage>
