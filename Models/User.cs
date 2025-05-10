@@ -3,10 +3,10 @@ using SQLite;
 
 namespace Righthere_Demo.Models;
 
-public class User
+public class Users
 {
     [PrimaryKey, AutoIncrement]
-    public string Userid { get; set; }
+    public int Userid { get; set; }
     public string Username { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
