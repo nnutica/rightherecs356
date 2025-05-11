@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="Righthere_Demo.Popup.Savediary"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <toolkit:Popup.Size>
+        <Size Width="300" Height="180" />
+    </toolkit:Popup.Size>
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="คุณต้องการบันทึกไดอารี่ไว้ไหม?" />
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Clicked="OnYesClicked" Text="ใช่" />
+            <Button Clicked="OnNoClicked" Text="ไม่" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+
+</toolkit:Popup>

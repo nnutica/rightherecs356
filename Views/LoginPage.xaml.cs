@@ -2,6 +2,7 @@ using System;
 using Righthere_Demo.Models;
 using Righthere_Demo.Data;
 using Righthere_Demo.Services;
+using Microsoft.Maui.Storage;
 
 
 
@@ -41,8 +42,8 @@ public partial class LoginPage : ContentPage
 			await DisplayAlert("Error", "Invalid Username or Password", "OK");
 			return;
 		}
-
-		App.Current.MainPage = new NavigationPage(new Views.StarterPage(user: App.User));
+		await SecureStorage.SetAsync("UserId", App.User.Userid.ToString());
+		App.Current.MainPage = new NavigationPage(new Views.StarterPage(users: App.User));
 	}
 
 	private async void OnRegisterClicked(object sender, EventArgs e)

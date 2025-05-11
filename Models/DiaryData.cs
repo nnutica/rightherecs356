@@ -6,8 +6,14 @@ namespace Righthere_Demo.Models;
 public class DiaryData
 {
     [PrimaryKey, AutoIncrement]
-    public int DiaryId { get; set; }
-    public string UserId { get; set; }
+    public int Id { get; set; }
+
+    public int UserId { get; set; }  // ลิงก์ไปยัง Users.Userid
     public string Content { get; set; }
-    public DateTime Date { get; set; }
+    public string Mood { get; set; }
+    public string Suggestion { get; set; }
+    public string Keywords { get; set; }
+    public string EmotionalReflection { get; set; }
+
+    public DateTime CreatedAt { get; set; }
 }

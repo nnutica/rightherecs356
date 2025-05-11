@@ -4,20 +4,68 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="StarterPage">
-    <VerticalStackLayout
-        Padding="30"
-        Spacing="25"
-        VerticalOptions="Center">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="OnLogoutClicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MRR"
+                    Glyph="&#xe9ba;"
+                    Size="20" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+    </ContentPage.ToolbarItems>
+    <StackLayout Padding="20" Spacing="30">
+
         <Label
             x:Name="welcomeLabel"
             FontSize="24"
             HorizontalOptions="Center"
             Text="Welcome" />
+        <Label
+            x:Name="dateLabel"
+            FontSize="18"
+            HorizontalOptions="Center" />
 
-        <Button
-            BackgroundColor="DarkRed"
-            Clicked="OnLogoutClicked"
-            Text="Logout"
-            TextColor="White" />
-    </VerticalStackLayout>
+        <Frame
+            Padding="20"
+            BackgroundColor="#f9f9f9"
+            BorderColor="Gray"
+            CornerRadius="10"
+            HasShadow="True">
+            <StackLayout>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="ประวัติการเขียนไดอารี่" />
+                <Button
+                    Margin="0,10,0,0"
+                    Clicked="OnDiaryHistoryClicked"
+                    HorizontalOptions="Center"
+                    Text="ดูไดอารี่ทั้งหมด" />
+            </StackLayout>
+
+        </Frame>
+        <StackLayout VerticalOptions="FillAndExpand" />
+        <Grid ColumnDefinitions="*,*">
+            <Button
+                Grid.Column="0"
+                Margin="5"
+                BackgroundColor="#d0f0c0"
+                Clicked="OnTreePageClicked"
+                CornerRadius="10"
+                HeightRequest="50"
+                Text="🌱 ต้นไม้" />
+            <Button
+                Grid.Column="1"
+                Margin="5"
+                BackgroundColor="#fddde6"
+                Clicked="OnDiaryPageClicked"
+                CornerRadius="10"
+                HeightRequest="50"
+                Text="📔 ไดอารี่" />
+        </Grid>
+    </StackLayout>
 </ContentPage>
