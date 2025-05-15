@@ -7,57 +7,74 @@
     CanBeDismissedByTappingOutsideOfPopup="False">
 
     <toolkit:Popup.Size>
-        <Size Width="300" Height="180" />
+        <Size Width="320"
+              Height="300"/>
     </toolkit:Popup.Size>
-    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="#FFF8E8">
-        <Label
-            FontSize="30"
-            HorizontalOptions="Start"
-            Text="Before You Go..." />
 
-        <Label
-            FontSize="Body"
-            HorizontalOptions="Start"
-            Text="____________________________________________" 
-            TextColor="LightGray"
-            Margin="30"/>
+    <Frame
+        CornerRadius="20"
+        Padding="0"
+        HasShadow="True"
+        BackgroundColor="#FFF8E8">
 
-        <Label
-            FontSize="18"
-            Margin="10"
-            HorizontalOptions="Start"
-            Text="Do you want to keep this entry, or would you like to let it go?"/>
+        <VerticalStackLayout Padding="20"
+                             Spacing="12">
+            <!-- Heading -->
+            <Label
+                FontSize="22"
+                FontAttributes="Bold"
+                HorizontalOptions="Start"
+                Text="Before You Go..."
+                TextColor="#333"/>
 
-        <Label
-            FontSize="18"
-            Margin="10"
-            HorizontalOptions="Start"
-            Text="Keeping or letting go, both are acts of self-love."/>
+            <!-- Line -->
+            <BoxView
+                HeightRequest="1"
+                Color="LightGray"
+                HorizontalOptions="Fill"
+                Margin="0,0,0,10"/>
 
-        <Label
-            FontSize="18"
-            Margin="10"
-            HorizontalOptions="Start"
-            Text="Trust your heart—it knows what you need."/>
+            <!-- Body Texts -->
+            <Label
+                FontSize="13"
+                TextColor="#444"
+                HorizontalTextAlignment="Start"
+                Text="Do you want to keep this entry, or would you like to let it go?"/>
 
-            
+            <Label
+                FontSize="13"
+                TextColor="#444"
+                HorizontalTextAlignment="Start"
+                Text="Keeping or letting go, both are acts of self-love."/>
 
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
-            <Button 
-                Clicked="OnYesClicked" 
-                Text="Keep it" 
-                TextColor="#FFFFFF"
-                CornerRadius="7"
-                BackgroundColor="#F1B24A"/>
-            
-            <Button 
-                Clicked="OnNoClicked" 
-                TextColor="#F1B24A"
-                Text="Let it go"
-                BorderColor="#F1B24A"
-                CornerRadius="7"
-                BackgroundColor="Transparent"/>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+            <Label
+                FontSize="13"
+                TextColor="#444"
+                HorizontalTextAlignment="Start"
+                Text="Trust your heart—it knows what you need."/>
 
+            <!-- Buttons -->
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   Margin="10,20,10,0"
+                                   Spacing="20">
+                <Button
+                    Clicked="OnYesClicked"
+                    Text="Keep it"
+                    TextColor="White"
+                    CornerRadius="10"
+                    WidthRequest="100"
+                    BackgroundColor="#F1B24A"/>
+
+                <Button
+                    Clicked="OnNoClicked"
+                    Text="Let it go"
+                    TextColor="#F1B24A"
+                    WidthRequest="100"
+                    CornerRadius="10"
+                    BackgroundColor="Transparent"
+                    BorderColor="#F1B24A"
+                    BorderWidth="1"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Frame>
 </toolkit:Popup>

@@ -19,6 +19,7 @@ namespace Righthere_Demo.Views
         public SummaryPage(string mood, string Suggestion, string Keyword, string Emotion, string content, double score)
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
 
             this.mood = mood;
             this.Sugges = Suggestion;

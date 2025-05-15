@@ -16,6 +16,7 @@ namespace Righthere_Demo.Views
         public DiaryPage(Users users, string colorHex = "#FFFFFF", int sentimentScore = 0)
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             _user = users;
             _colorHex = colorHex;
             _sentimentScore = sentimentScore;

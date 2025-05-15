@@ -3,24 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Righthere_Demo.Views.FirstPage"
              Title="FirstPage">
- <Grid>  
-      <Image Source="start.png"  
-             Aspect="AspectFill"  
-             HorizontalOptions="FillAndExpand"  
-             VerticalOptions="FillAndExpand"  
-             Grid.RowSpan="3" />  
+       <Grid>
+              <Image Source="start.png"
+                     Aspect="AspectFill"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand"
+                     Grid.RowSpan="3"/>
 
-      <Image Source="logo.png"  
-             HorizontalOptions="Center"  
-             VerticalOptions="Start"  
-             Margin="20,70,0,0" />  
+              <Image Source="logo.png"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Start"
+                     Margin="20,70,0,0"/>
 
-      <Button Text="Get Started"  
-              FontSize="Body"
-              HorizontalOptions="Center"  
-              VerticalOptions="End"
-              BackgroundColor="#F1B24A"
-              WidthRequest="290"
-              Margin="0,20,0,50" />  
-  </Grid>   
+              <Button Text="Get Started"
+                      FontSize="Body"
+                      HorizontalOptions="Center"
+                      VerticalOptions="End"
+                      BackgroundColor="#F1B24A"
+                      WidthRequest="290"
+                      Clicked="StartButton_Clicked"
+                      Margin="0,20,0,50"/>
+       </Grid>
 </ContentPage>

@@ -19,6 +19,6 @@ public partial class App : Application
 		UserDB = new UserDatabase();
 		User = new Users();
 
-		MainPage = new NavigationPage(new Views.LoginPage());
+		MainPage = new NavigationPage(new Views.FirstPage());
 	}
 }

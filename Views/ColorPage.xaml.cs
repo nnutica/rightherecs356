@@ -18,6 +18,7 @@ public partial class ColorPage : ContentPage
 	{
 		InitializeComponent();
 		_user = users;
+		NavigationPage.SetHasNavigationBar(this, false);
 
 	}
 	private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs e)

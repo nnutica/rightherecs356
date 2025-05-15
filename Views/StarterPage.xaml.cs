@@ -1,21 +1,23 @@
 using System;
 using Righthere_Demo.Models;
 
-
 namespace Righthere_Demo.Views;
 
 public partial class StarterPage : ContentPage
 {
-
+	private bool _isInitialized = false; // ป้องกัน InitializeAsync ซ้ำ
 
 	public StarterPage(Users users)
 	{
 		InitializeComponent();
-		_ = InitializeAsync();
+		_ = InitializeAsync(); // เรียกแบบไม่รอ
 	}
 
 	private async Task InitializeAsync()
 	{
+		if (_isInitialized) return;
+		_isInitialized = true;
+
 		var userId = await SecureStorage.GetAsync("UserId");
 
 		if (!string.IsNullOrEmpty(userId))
@@ -30,18 +32,20 @@ public partial class StarterPage : ContentPage
 				dateLabel.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy", new System.Globalization.CultureInfo("th-TH"));
 			}
 		}
-		else
+		else if (Navigation.NavigationStack.LastOrDefault()?.GetType() != typeof(LoginPage))
 		{
-			// หากไม่มี UserId ใน SecureStorage
-			await Navigation.PushAsync(new LoginPage()); // ถ้ามีการ logout หรือ session expired
+			// หากไม่มี UserId และยังไม่ได้อยู่หน้า LoginPage → ไปหน้า Login
+			await Navigation.PushAsync(new LoginPage());
 		}
 	}
+
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
-		StartTreeAnimation();
 
-		// เรียก InitializeAsync() เพื่อโหลด user info เหมือนเดิม
+
+
+		// เรียก initialize อีกครั้ง (จะไม่ซ้ำเพราะมี _isInitialized)
 		await InitializeAsync();
 
 		if (App.User == null)
@@ -50,18 +54,14 @@ public partial class StarterPage : ContentPage
 		// ดึงไดอารี่ล่าสุดของ user
 		var diaries = await App.DiaryDB.GetDiariesByUserAsync(App.User.Userid);
 
-		// ถ้ามีไดอารี่
 		if (diaries.Any())
 		{
-			// เอาไดอารี่ล่าสุด
 			var lastDiary = diaries.OrderByDescending(d => d.CreatedAt).FirstOrDefault();
 
 			if (lastDiary != null)
 			{
-				// หา mood ล่าสุด
-				var mood = lastDiary.Mood?.ToLower() ?? "";
+				string mood = lastDiary.Mood?.ToLower() ?? "";
 
-				// เลือกรูปตาม mood
 				string imageName = mood switch
 				{
 					"joy" => "joy.png",
@@ -78,33 +78,44 @@ public partial class StarterPage : ContentPage
 		}
 		else
 		{
-			// ไม่มีไดอารี่ ให้แสดงรูป empty
 			MoodTreeImage.Source = ImageSource.FromFile("empty.png");
 		}
 	}
 
+	private CancellationTokenSource _animationTokenSource;
 
 	private async void StartTreeAnimation()
 	{
-		while (true)
+		_animationTokenSource = new CancellationTokenSource();
+		var token = _animationTokenSource.Token;
+
+		try
 		{
-			await MoodTreeImage.RotateTo(5, 500, Easing.SinInOut);
-			await MoodTreeImage.RotateTo(-5, 500, Easing.SinInOut);
+			while (!token.IsCancellationRequested)
+			{
+				await MoodTreeImage.RotateTo(5, 500, Easing.SinInOut);
+				await MoodTreeImage.RotateTo(-5, 500, Easing.SinInOut);
+			}
+		}
+		catch (TaskCanceledException)
+		{
+			// ปลอดภัยเมื่อ animation ถูกยกเลิก
 		}
 	}
+
 	private async void OnLogoutClicked(object sender, EventArgs e)
 	{
 		bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
 		if (!answer)
 			return;
 
-		// รีเซ็ตข้อมูลผู้ใช้ใน App
 		App.User = null;
 		SecureStorage.Remove("UserId");
 
-		// เปลี่ยนหน้ากลับไปที่ Login
+		// Reset Navigation Stack กลับไปหน้า Login
 		App.Current.MainPage = new NavigationPage(new LoginPage());
 	}
+
 	private async void OnDiaryHistoryClicked(object sender, EventArgs e)
 	{
 		if (App.User == null)
@@ -113,12 +124,12 @@ public partial class StarterPage : ContentPage
 			await Navigation.PushAsync(new LoginPage());
 			return;
 		}
-		await Navigation.PushAsync(new DiaryHistoryPage()); // หน้านี้คุณสร้างเพิ่มเอง
+		await Navigation.PushAsync(new DiaryHistoryPage());
 	}
 
 	private async void OnTreePageClicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new TreePage()); // หน้านี้คุณสร้างเพิ่มเอง
+		await Navigation.PushAsync(new TreePage());
 	}
 
 	private async void OnDiaryPageClicked(object sender, EventArgs e)
@@ -129,9 +140,9 @@ public partial class StarterPage : ContentPage
 			await Navigation.PushAsync(new LoginPage());
 			return;
 		}
-
-		await Navigation.PushAsync(new ColorPage(App.User)); // หน้านี้คุณสร้างเพิ่มเอง
+		await Navigation.PushAsync(new ColorPage(App.User));
 	}
+
 	private async void OnDashboardClicked(object sender, EventArgs e)
 	{
 		if (App.User == null)
@@ -140,6 +151,6 @@ public partial class StarterPage : ContentPage
 			await Navigation.PushAsync(new LoginPage());
 			return;
 		}
-		await Navigation.PushAsync(new DashboardPage()); // หน้านี้คุณสร้างเพิ่มเอง
+		await Navigation.PushAsync(new DashboardPage());
 	}
 }
