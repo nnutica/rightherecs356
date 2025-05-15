@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="Righthere_Demo.Views.DiaryHistoryPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="DiaryHistoryPage">
+    Title="Diary History">
+
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Offset="0.1" Color="#FFEEF2" />
-            <GradientStop Offset="1.0" Color="#D0E8FF" />
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Offset="0.1"
+                          Color="#FFEEF2"/>
+            <GradientStop Offset="1.0"
+                          Color="#D0E8FF"/>
         </LinearGradientBrush>
     </ContentPage.Background>
 
@@ -16,11 +19,10 @@
             FontAttributes="Bold"
             FontSize="24"
             HorizontalOptions="Center"
-            Text="📘 ประวัติไดอารี่" />
+            Text="📘 My Diary"/>
 
         <CollectionView
             x:Name="DiaryListView"
-            SelectionChanged="DiaryListView_SelectionChanged"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -32,13 +34,32 @@
                         HasShadow="True">
                         <VerticalStackLayout>
                             <Label
-                                FontAttributes="Bold"
                                 Text="{Binding CreatedAt, StringFormat='วันที่: {0:dd MMM yyyy}'}"
-                                TextColor="DarkSlateBlue" />
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                TextColor="DarkSlateBlue"/>
+
                             <Label
-                                FontSize="14"
                                 Text="{Binding Content}"
-                                TextColor="Gray" />
+                                FontSize="14"
+                                TextColor="Black"/>
+
+                            <Label
+                                Text="{Binding Mood, StringFormat='Mood: {0}'}"
+                                FontSize="12"
+                                TextColor="DarkOliveGreen"/>
+
+                            <Label
+                                Text="{Binding SentimentScore, StringFormat='Sentiment: {0:F2}'}"
+                                FontSize="12"
+                                TextColor="Gray"/>
+
+                            <Label
+                                FontSize="12"
+                                Text="{Binding Suggestion}"
+                                TextColor="Gray"
+                                FontAttributes="Italic"
+                                Margin="0,5,0,0"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
