@@ -18,9 +18,9 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20"
-                Spacing="15"
-                VerticalOptions="Center"
-                             Margin="0,0,0,-100">
+                             Spacing="15"
+                             VerticalOptions="Center"
+                             Margin="0,0,0,100">
             <Label Text="Welcome Back!"
                    FontSize="24"
                    FontAttributes="Bold"

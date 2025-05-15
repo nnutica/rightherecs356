@@ -39,6 +39,7 @@ public partial class StarterPage : ContentPage
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
+		StartTreeAnimation();
 
 		// เรียก InitializeAsync() เพื่อโหลด user info เหมือนเดิม
 		await InitializeAsync();
@@ -79,6 +80,16 @@ public partial class StarterPage : ContentPage
 		{
 			// ไม่มีไดอารี่ ให้แสดงรูป empty
 			MoodTreeImage.Source = ImageSource.FromFile("empty.png");
+		}
+	}
+
+
+	private async void StartTreeAnimation()
+	{
+		while (true)
+		{
+			await MoodTreeImage.RotateTo(5, 500, Easing.SinInOut);
+			await MoodTreeImage.RotateTo(-5, 500, Easing.SinInOut);
 		}
 	}
 	private async void OnLogoutClicked(object sender, EventArgs e)
