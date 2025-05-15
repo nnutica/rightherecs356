@@ -2,84 +2,91 @@
 <ContentPage
     x:Class="Righthere_Demo.Views.LoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"> 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="LoginPage">
+
 
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#D7E7FF" Offset="0.1" />
-            <GradientStop Color="#8BB7BA" Offset="1.0" />
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="#D7E7FF"
+                          Offset="0.1"/>
+            <GradientStop Color="#8BB7BA"
+                          Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
 
-    <ScrollView>  
-     <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Start">  
-             <Label Text="Welcome Back!"  
-                    FontSize="24"  
-                    FontAttributes="Bold"  
-                    HorizontalOptions="Center" 
-                    TextColor="#2A614E" 
-                    Margin="0,120,0,20"/>  
+    <ScrollView>
+        <VerticalStackLayout Padding="20"
+                Spacing="15"
+                VerticalOptions="Center"
+                             Margin="0,0,0,-100">
+            <Label Text="Welcome Back!"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#2A614E"/>
 
-             <Label Text="Access your safe space for thoughts and memories"  
-                    FontSize="14"  
-                    TextColor="Black"  
-                    HorizontalOptions="Center"  
-                    HorizontalTextAlignment="Center" />  
+            <Label Text="Access your safe space for thoughts and memories"
+                   FontSize="14"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
 
-             <Frame BackgroundColor="White"  
-                    BorderColor="#2A614E"  
-                    CornerRadius="10"  
-                    Padding="0"  
-                    HeightRequest="50"  
-                    Margin="0,10,0,0">  
-                 <Entry x:Name="usernameEntry"
-                        Placeholder="Email or Username"  
-                        TextColor="#2A614E"  
-                        HorizontalOptions="FillAndExpand"  
-                        VerticalOptions="Center" />  
-             </Frame>  
+            <Frame BackgroundColor="White"
+                   BorderColor="#2A614E"
+                   CornerRadius="10"
+                   Padding="0"
+                   HeightRequest="50"
+                   Margin="0,10,0,0">
+                <Entry x:Name="usernameEntry"
+                       Placeholder="Email or Username"
+                       TextColor="#2A614E"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Center"/>
+            </Frame>
 
-             <Frame BackgroundColor="White"  
-                    BorderColor="#2A614E"  
-                    CornerRadius="10"  
-                    Padding="0"  
-                    HeightRequest="50"  
-                    Margin="0,10,0,0">  
-                 <Grid>  
-                     <Entry x:Name="passwordEntry"  
-                            Placeholder="Password"  
-                            IsPassword="True"  
-                            TextColor="#2A614E"  
-                            HorizontalOptions="FillAndExpand"  
-                            VerticalOptions="Center" />  
-                 </Grid>  
-             </Frame>
+            <Frame BackgroundColor="White"
+                   BorderColor="#2A614E"
+                   CornerRadius="10"
+                   Padding="0"
+                   HeightRequest="50"
+                   Margin="0,10,0,0">
+                <Grid>
+                    <Entry x:Name="passwordEntry"
+                           Placeholder="Password"
+                           IsPassword="True"
+                           TextColor="#2A614E"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Frame>
 
-            
-                <Button Text="Sign In"  
-                     BackgroundColor="#2A614E"  
-                     TextColor="White"  
-                     HeightRequest="50"  
-                     CornerRadius="10"  
-                     HorizontalOptions="FillAndExpand"  
-                     Margin="0,20,0,0" 
-                     Clicked="OnLoginClicked"/>  
+
+            <Button Text="Sign In"
+                    BackgroundColor="#2A614E"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="10"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0,20,0,0"
+                    Clicked="OnLoginClicked"/>
             <HorizontalStackLayout HorizontalOptions="Center">
-                <Label Text="Don’t have an account?  "  
-                        FontSize="14"  
-                        TextColor="Gray"  
-                        HorizontalOptions="Center" />  
+                <Label Text="Don’t have an account?  "
+                       FontSize="14"
+                       TextColor="Gray"
+                       HorizontalOptions="Center"/>
 
-                 <Label Text="Registration"  
-                        FontSize="14"  
-                        TextColor="#2A614E"  
-                        HorizontalOptions="Center"  
-                        TextDecorations="Underline">  
-                     <Label.GestureRecognizers>  
-                         <TapGestureRecognizer />  
-                     </Label.GestureRecognizers>  
-                 </Label>
+                <Label Text="Registration"
+                       FontSize="14"
+                       TextColor="#2A614E"
+                       HorizontalOptions="Center"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRegisterClicked"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </HorizontalStackLayout>
-        </VerticalStackLayout>  
- </ScrollView>  
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

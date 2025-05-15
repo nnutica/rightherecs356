@@ -11,22 +11,23 @@
                 <FontImageSource
                     FontFamily="MRR"
                     Glyph="&#xe9ba;"
-                    Size="20" />
+                    Size="20"/>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
 
     </ContentPage.ToolbarItems>
-    <StackLayout Padding="20" Spacing="30">
+    <StackLayout Padding="20"
+            Spacing="30">
 
         <Label
             x:Name="welcomeLabel"
             FontSize="24"
             HorizontalOptions="Center"
-            Text="Welcome" />
+            Text="Welcome"/>
         <Label
             x:Name="dateLabel"
             FontSize="18"
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"/>
 
         <Frame
             Padding="20"
@@ -39,16 +40,24 @@
                     FontAttributes="Bold"
                     FontSize="20"
                     HorizontalOptions="Center"
-                    Text="ประวัติการเขียนไดอารี่" />
+                    Text="ประวัติการเขียนไดอารี่"/>
                 <Button
                     Margin="0,10,0,0"
                     Clicked="OnDiaryHistoryClicked"
                     HorizontalOptions="Center"
-                    Text="ดูไดอารี่ทั้งหมด" />
+                    Text="ดูไดอารี่ทั้งหมด"/>
             </StackLayout>
 
         </Frame>
-        <StackLayout VerticalOptions="FillAndExpand" />
+
+        <Image
+            x:Name="MoodTreeImage"
+            Source="empty.png"
+            HorizontalOptions="Center"
+            HeightRequest="200"
+            WidthRequest="200"/>
+
+        <StackLayout VerticalOptions="FillAndExpand"/>
         <Grid ColumnDefinitions="*,*,*">
             <Button
                 Grid.Column="0"
@@ -57,7 +66,7 @@
                 Clicked="OnTreePageClicked"
                 CornerRadius="10"
                 HeightRequest="50"
-                Text="🌱 ต้นไม้" />
+                Text="🌱 ต้นไม้"/>
             <Button
                 Grid.Column="1"
                 Margin="5"
@@ -65,7 +74,7 @@
                 Clicked="OnDiaryPageClicked"
                 CornerRadius="10"
                 HeightRequest="50"
-                Text="📔 ไดอารี่" />
+                Text="📔 ไดอารี่"/>
             <Button
                 Grid.Column="2"
                 Margin="5"
@@ -73,7 +82,7 @@
                 Clicked="OnDashboardClicked"
                 CornerRadius="10"
                 HeightRequest="50"
-                Text="📶 แดชบอร์ด" />
+                Text="📶 แดชบอร์ด"/>
         </Grid>
     </StackLayout>
 </ContentPage>

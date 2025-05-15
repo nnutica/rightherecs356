@@ -61,9 +61,26 @@ public partial class DashboardPage : ContentPage
 				LabelTextSize = 48
 			};
 
-			// Tree Logic (mood มากสุด)
-			var dominantMood = moodCounts
-				.Aggregate((l, r) => l.Value <= r.Value ? r : l).Key;
+			// Tree Logic (เช็คกรณีพิเศษ)
+			var maxCount = moodCounts.Max(x => x.Value);
+			var allMaxMoods = moodCounts.Where(x => x.Value == maxCount).Select(x => x.Key).ToList();
+
+			string dominantMood = "";
+
+			if (allMaxMoods.Count == moodCounts.Count)
+			{
+				// ทุก mood count เท่ากันหมด → เอา mood ล่าสุด
+				var latestDiary = diaries.OrderByDescending(d => d.CreatedAt).FirstOrDefault();
+				if (latestDiary != null)
+					dominantMood = latestDiary.Mood;
+				else
+					dominantMood = "empty";
+			}
+			else
+			{
+				// มี mood เด่นชัด → ใช้ logic เดิม
+				dominantMood = moodCounts.Aggregate((l, r) => l.Value <= r.Value ? r : l).Key;
+			}
 
 			SetTreeImage(dominantMood);
 		}
@@ -74,6 +91,7 @@ public partial class DashboardPage : ContentPage
 			TreeImage.Source = "empty.png";
 		}
 	}
+
 	private SKColor GetMoodColor(string mood)
 	{
 		return mood.ToLower() switch
@@ -87,6 +105,7 @@ public partial class DashboardPage : ContentPage
 			_ => SKColors.Green,
 		};
 	}
+
 	private void SetTreeImage(string mood)
 	{
 		TreeImage.Source = mood.ToLower() switch

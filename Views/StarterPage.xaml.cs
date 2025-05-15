@@ -36,7 +36,51 @@ public partial class StarterPage : ContentPage
 			await Navigation.PushAsync(new LoginPage()); // ถ้ามีการ logout หรือ session expired
 		}
 	}
+	protected override async void OnAppearing()
+	{
+		base.OnAppearing();
 
+		// เรียก InitializeAsync() เพื่อโหลด user info เหมือนเดิม
+		await InitializeAsync();
+
+		if (App.User == null)
+			return;
+
+		// ดึงไดอารี่ล่าสุดของ user
+		var diaries = await App.DiaryDB.GetDiariesByUserAsync(App.User.Userid);
+
+		// ถ้ามีไดอารี่
+		if (diaries.Any())
+		{
+			// เอาไดอารี่ล่าสุด
+			var lastDiary = diaries.OrderByDescending(d => d.CreatedAt).FirstOrDefault();
+
+			if (lastDiary != null)
+			{
+				// หา mood ล่าสุด
+				var mood = lastDiary.Mood?.ToLower() ?? "";
+
+				// เลือกรูปตาม mood
+				string imageName = mood switch
+				{
+					"joy" => "joy.png",
+					"sadness" => "sadness.png",
+					"anger" => "anger.png",
+					"surprise" => "surprise.png",
+					"fear" => "fear.png",
+					"love" => "love.png",
+					_ => "empty.png",
+				};
+
+				MoodTreeImage.Source = ImageSource.FromFile(imageName);
+			}
+		}
+		else
+		{
+			// ไม่มีไดอารี่ ให้แสดงรูป empty
+			MoodTreeImage.Source = ImageSource.FromFile("empty.png");
+		}
+	}
 	private async void OnLogoutClicked(object sender, EventArgs e)
 	{
 		bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
