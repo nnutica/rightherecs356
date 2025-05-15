@@ -2,29 +2,114 @@
 <ContentPage
     x:Class="Righthere_Demo.Views.RegisterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="RegisterPage">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#D7E7FF" Offset="0.1" />
+            <GradientStop Color="#8BB7BA" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="15">
-            <Entry x:Name="usernameEntry" Placeholder="Username" />
-            <Entry
-                x:Name="emailEntry"
-                Keyboard="Email"
-                Placeholder="Email" />
-            <Entry
-                x:Name="passwordEntry"
-                IsPassword="True"
-                Placeholder="Password" />
-            <Entry
-                x:Name="ConfirmPasswordEntry"
-                BackgroundColor="GhostWhite"
-                IsPassword="True"
-                Placeholder="Confirm Password" />
-            <Button Clicked="OnRegisterClicked" Text="Register" />
-            <Button
-                x:Name="LoginButton"
-                Clicked="OnLoginClicked"
-                Text="Already have an account? Login" />
+        <VerticalStackLayout Padding="20"  
+                             Spacing="15" 
+                             VerticalOptions="Start">
+            <Label Text="Registration"  
+                    FontSize="24"  
+                    FontAttributes="Bold"  
+                    HorizontalOptions="Center" 
+                    TextColor="#2A614E"/>
+
+            <Label Text="Create an account to unlock a safe space for your feelings and memories"  
+                    FontSize="14"  
+                    TextColor="Black"  
+                    HorizontalOptions="Center"  
+                    HorizontalTextAlignment="Center" />
+
+            <Frame BackgroundColor="White"  
+                    BorderColor="#2A614E"  
+                    CornerRadius="10"  
+                    Padding="0"  
+                    HeightRequest="50"  
+                    Margin="0,10,0,0">
+                <Entry Placeholder="Username"
+                        x:Name="usernameEntry"  
+                        TextColor="#2A614E"  
+                        HorizontalOptions="FillAndExpand"  
+                        VerticalOptions="Center" />
+            </Frame>
+
+
+            <Frame BackgroundColor="White"  
+                    BorderColor="#2A614E"  
+                    CornerRadius="10"  
+                    Padding="0"  
+                    HeightRequest="50"  
+                    Margin="0,10,0,0">
+                <Entry Placeholder="Email"
+                        x:Name="emailEntry"  
+                        TextColor="#2A614E"  
+                        HorizontalOptions="FillAndExpand"  
+                        VerticalOptions="Center" />
+            </Frame>
+
+            <Frame BackgroundColor="White"  
+                    BorderColor="#2A614E"  
+                    CornerRadius="10"  
+                    Padding="0"  
+                    HeightRequest="50"  
+                    Margin="0,10,0,0">
+                <Grid>
+                    <Entry x:Name="passwordEntry" 
+                            Placeholder="Password"  
+                            IsPassword="True"  
+                            TextColor="#2A614E"  
+                            HorizontalOptions="FillAndExpand"  
+                            VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="White"  
+                    BorderColor="#2A614E"  
+                    CornerRadius="10"  
+                    Padding="0"  
+                    HeightRequest="50"  
+                    Margin="0,10,0,0">
+                <Grid>
+                    <Entry x:Name="ConfirmPasswordEntry"
+                            Placeholder="Confirm Password"  
+                            IsPassword="True"  
+                            TextColor="#2A614E"  
+                            HorizontalOptions="FillAndExpand"  
+                            VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+
+            <Button Text="Sign Up"  
+                     BackgroundColor="#2A614E"  
+                     TextColor="White"  
+                     HeightRequest="50"  
+                     CornerRadius="10"  
+                     HorizontalOptions="FillAndExpand"  
+                     Margin="0,20,0,0" />
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Already have an account?  "  
+                        FontSize="14"  
+                        TextColor="Gray"  
+                        HorizontalOptions="Center" />
+
+                <Label Text="Sign In"  
+                        FontSize="14"  
+                        TextColor="#2A614E"  
+                        HorizontalOptions="Center"  
+                        TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

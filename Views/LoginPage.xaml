@@ -2,9 +2,7 @@
 <ContentPage
     x:Class="Righthere_Demo.Views.LoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="LoginPage">
-    
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"> 
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -14,13 +12,13 @@
     </ContentPage.Background>
 
     <ScrollView>  
-     <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center"
-                          Margin="0,0,0,-100">  
+     <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Start">  
              <Label Text="Welcome Back!"  
                     FontSize="24"  
                     FontAttributes="Bold"  
                     HorizontalOptions="Center" 
-                    TextColor="#2A614E" />  
+                    TextColor="#2A614E" 
+                    Margin="0,120,0,20"/>  
 
              <Label Text="Access your safe space for thoughts and memories"  
                     FontSize="14"  
