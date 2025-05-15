@@ -6,25 +6,29 @@ namespace Righthere_Demo.Views;
 
 public partial class DiaryHistoryPage : ContentPage
 {
-	private DiaryDatabase _diaryDb;
+	private DiaryDatabase _diaryDb = new DiaryDatabase();
 	public DiaryHistoryPage()
 	{
 
 		InitializeComponent();
 		_diaryDb = new DiaryDatabase();
+
 	}
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
 
-		if (App.User == null)
-		{
-			await DisplayAlert("Error", "You must be logged in to view history.", "OK");
-			await Navigation.PopAsync();
-			return;
-		}
-
 		var diaries = await _diaryDb.GetDiariesByUserAsync(App.User.Userid);
-		DiaryListView.ItemsSource = diaries.OrderByDescending(d => d.CreatedAt);
+		DiaryListView.ItemsSource = diaries;
+	}
+
+
+	private async void DiaryListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		if (e.CurrentSelection.FirstOrDefault() is DiaryData selectedDiary)
+		{
+			await Navigation.PushAsync(new Views.DiaryDetailPage(selectedDiary));
+			DiaryListView.SelectedItem = null;
+		}
 	}
 }

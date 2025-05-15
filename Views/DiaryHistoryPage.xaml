@@ -10,15 +10,18 @@
             <GradientStop Offset="1.0" Color="#D0E8FF" />
         </LinearGradientBrush>
     </ContentPage.Background>
+
     <VerticalStackLayout Padding="20">
         <Label
-            Margin="0,10"
             FontAttributes="Bold"
             FontSize="24"
             HorizontalOptions="Center"
-            Text="📘 ประวัติการเขียนไดอารี่" />
+            Text="📘 ประวัติไดอารี่" />
 
-        <CollectionView x:Name="DiaryListView">
+        <CollectionView
+            x:Name="DiaryListView"
+            SelectionChanged="DiaryListView_SelectionChanged"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame
@@ -30,18 +33,12 @@
                         <VerticalStackLayout>
                             <Label
                                 FontAttributes="Bold"
-                                Text="{Binding Created_at, StringFormat='วันที่: {0:dd MMM yyyy}'}"
+                                Text="{Binding CreatedAt, StringFormat='วันที่: {0:dd MMM yyyy}'}"
                                 TextColor="DarkSlateBlue" />
                             <Label
                                 FontSize="14"
-                                LineBreakMode="WordWrap"
-                                MaxLines="2"
                                 Text="{Binding Content}"
                                 TextColor="Gray" />
-                            <Label
-                                FontSize="12"
-                                Text="{Binding EmotionalReflection, StringFormat='ความรู้สึก: {0}'}"
-                                TextColor="SlateGray" />
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

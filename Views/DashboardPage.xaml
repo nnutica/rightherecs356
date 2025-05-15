@@ -1,0 +1,27 @@
+<ContentPage
+    x:Class="Righthere_Demo.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    Title="Mood Dashboard">
+
+    <VerticalStackLayout Padding="20">
+        <Label
+            FontAttributes="Bold"
+            FontSize="24"
+            HorizontalOptions="Center"
+            Text="Mood Summary" />
+
+        <microcharts:ChartView
+            x:Name="MoodChart"
+            HeightRequest="300"
+            WidthRequest="300" />
+
+        <Label
+            x:Name="AverageMoodLabel"
+            Margin="0,20"
+            FontSize="18"
+            HorizontalOptions="Center"
+            TextColor="Black" />
+    </VerticalStackLayout>
+</ContentPage>

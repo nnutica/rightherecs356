@@ -77,4 +77,14 @@ public partial class StarterPage : ContentPage
 
 		await Navigation.PushAsync(new DiaryPage(App.User)); // หน้านี้คุณสร้างเพิ่มเอง
 	}
+	private async void OnDashboardClicked(object sender, EventArgs e)
+	{
+		if (App.User == null)
+		{
+			await DisplayAlert("Error", "User session expired", "OK");
+			await Navigation.PushAsync(new LoginPage());
+			return;
+		}
+		await Navigation.PushAsync(new DashboardPage()); // หน้านี้คุณสร้างเพิ่มเอง
+	}
 }

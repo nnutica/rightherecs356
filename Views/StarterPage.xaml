@@ -49,7 +49,7 @@
 
         </Frame>
         <StackLayout VerticalOptions="FillAndExpand" />
-        <Grid ColumnDefinitions="*,*">
+        <Grid ColumnDefinitions="*,*,*">
             <Button
                 Grid.Column="0"
                 Margin="5"
@@ -66,6 +66,14 @@
                 CornerRadius="10"
                 HeightRequest="50"
                 Text="📔 ไดอารี่" />
+            <Button
+                Grid.Column="2"
+                Margin="5"
+                BackgroundColor="#FF71BCF5"
+                Clicked="OnDashboardClicked"
+                CornerRadius="10"
+                HeightRequest="50"
+                Text="📶 แดชบอร์ด" />
         </Grid>
     </StackLayout>
 </ContentPage>

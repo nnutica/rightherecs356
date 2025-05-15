@@ -14,6 +14,7 @@ namespace Righthere_Demo.Services
         private string emotionalReflection;
         private string mood;
         private string keywords;
+        private string score;
 
         public async Task SendData(string Diary)
         {
@@ -43,6 +44,7 @@ namespace Righthere_Demo.Services
                 emotionalReflection = ExtractValue(adviceRaw, "Emotional Reflection");
                 mood = ExtractValue(adviceRaw, "Mood");
                 keywords = ExtractValue(adviceRaw, "Keywords");
+                score = ExtractValue(adviceRaw, "Score");
 
                 // แสดงผลลัพธ์
                 Console.WriteLine($"Emotion: {emotion}");
@@ -50,6 +52,7 @@ namespace Righthere_Demo.Services
                 Console.WriteLine($"Emotional Reflection: {emotionalReflection}");
                 Console.WriteLine($"Mood: {mood}");
                 Console.WriteLine($"Keywords: {keywords}");
+                Console.WriteLine($"Score: {score}");
             }
             catch (HttpRequestException httpEx)
             {
@@ -73,6 +76,7 @@ namespace Righthere_Demo.Services
         public string GetEmotionalReflection() => emotionalReflection;
         public string GetMood() => mood;
         public string GetKeywords() => keywords;
+        public double GetScore() => double.TryParse(score, out var result) ? result : 0.0;
 
         public static async Task Main(string data)
         {
@@ -86,6 +90,7 @@ namespace Righthere_Demo.Services
             Console.WriteLine("Emotional Reflection: " + api.GetEmotionalReflection());
             Console.WriteLine("Mood: " + api.GetMood());
             Console.WriteLine("Keywords: " + api.GetKeywords());
+            Console.WriteLine("Score: " + api.GetScore());
         }
     }
 }

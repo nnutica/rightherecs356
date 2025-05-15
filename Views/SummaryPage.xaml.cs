@@ -14,8 +14,9 @@ namespace Righthere_Demo.Views
         private string keyword;
         private string Emotion;
         private string content;
+        private string score;
 
-        public SummaryPage(string mood, string Suggestion, string Keyword, string Emotion, string content)
+        public SummaryPage(string mood, string Suggestion, string Keyword, string Emotion, string content, double score)
         {
             InitializeComponent();
 
@@ -24,6 +25,7 @@ namespace Righthere_Demo.Views
             this.keyword = Keyword;
             this.Emotion = Emotion;
             this.content = content;
+            this.score = score.ToString();
 
             // ✅ ใช้ OnAppearing() เพื่ออัปเดต UI
         }
@@ -38,6 +40,7 @@ namespace Righthere_Demo.Views
             Advicetext.Text = this.Sugges;
             Keywordtext.Text = this.keyword;
             Emotiontext.Text = this.Emotion;
+            scoretext.Text = this.score;
         }
         private async void GoMainPage(object sender, EventArgs e)
         {
@@ -60,9 +63,11 @@ namespace Righthere_Demo.Views
                     UserId = currentUser.Userid,
                     Content = content,  // ต้องแน่ใจว่า content, mood, Sugges, keyword และ Emotion ถูกกำหนดค่าก่อน
                     Mood = mood,
+                    SentimentScore = double.Parse(score),
                     Suggestion = Sugges,
                     Keywords = keyword,
                     EmotionalReflection = Emotion,
+                    CreatedAt = DateTime.Now,
                 };
 
                 await App.DiaryDB.SaveDiaryAsync(diary);

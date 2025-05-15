@@ -71,7 +71,7 @@
             CornerRadius="20"
             HasShadow="True"
             WidthRequest="350">
-            <Entry
+            <Editor
                 x:Name="DiaryEntry"
                 BackgroundColor="White"
                 HeightRequest="300"

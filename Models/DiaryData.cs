@@ -11,6 +11,7 @@ public class DiaryData
     public int UserId { get; set; }  // ลิงก์ไปยัง Users.Userid
     public string Content { get; set; }
     public string Mood { get; set; }
+    public double SentimentScore { get; set; }
     public string Suggestion { get; set; }
     public string Keywords { get; set; }
     public string EmotionalReflection { get; set; }

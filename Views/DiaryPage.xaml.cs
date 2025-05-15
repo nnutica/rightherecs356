@@ -47,6 +47,7 @@ namespace Righthere_Demo.Views
             string suggestion = api.GetSuggestion();
             string keyword = api.GetKeywords();
             string emotion = api.GetEmotionalReflection();
+            double score = api.GetScore();
 
             if (string.IsNullOrWhiteSpace(mood) || string.IsNullOrWhiteSpace(suggestion) || string.IsNullOrWhiteSpace(keyword))
             {
@@ -72,7 +73,7 @@ namespace Righthere_Demo.Views
             LoadingIndicator.IsVisible = false;
             LoadingIndicator.IsRunning = false;
 
-            await Navigation.PushAsync(new SummaryPage(mood, suggestion, keyword, emotion, content));
+            await Navigation.PushAsync(new SummaryPage(mood, suggestion, keyword, emotion, content, score));
         }
     }
 }
