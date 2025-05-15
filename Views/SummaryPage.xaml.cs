@@ -26,6 +26,7 @@ namespace Righthere_Demo.Views
             this.Emotion = Emotion;
             this.content = content;
             this.score = score.ToString();
+            SetEmotionImage(mood);
 
             // ✅ ใช้ OnAppearing() เพื่ออัปเดต UI
         }
@@ -75,6 +76,19 @@ namespace Righthere_Demo.Views
             }
 
             Application.Current.MainPage = new NavigationPage(new StarterPage(users: App.User));
+        }
+        private void SetEmotionImage(string mood)
+        {
+            if (string.IsNullOrWhiteSpace(mood))
+            {
+                EmotionImage.Source = null;
+                return;
+            }
+
+            // สมมติไฟล์รูปภาพอยู่ในโฟลเดอร์ Resources/Images ของโปรเจกต์ และชื่อไฟล์ตาม mood เช่น joy.png
+            string imageName = $"{mood.ToLower()}.png";
+
+            EmotionImage.Source = ImageSource.FromFile(imageName);
         }
 
 

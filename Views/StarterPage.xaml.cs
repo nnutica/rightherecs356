@@ -75,7 +75,7 @@ public partial class StarterPage : ContentPage
 			return;
 		}
 
-		await Navigation.PushAsync(new DiaryPage(App.User)); // หน้านี้คุณสร้างเพิ่มเอง
+		await Navigation.PushAsync(new ColorPage(App.User)); // หน้านี้คุณสร้างเพิ่มเอง
 	}
 	private async void OnDashboardClicked(object sender, EventArgs e)
 	{

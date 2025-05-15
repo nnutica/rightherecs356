@@ -4,12 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="DiaryPage">
 
-    <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Offset="0.1" Color="#D7E7FF" />
-            <GradientStop Offset="1.0" Color="DeepSkyBlue" />
-        </LinearGradientBrush>
-    </ContentPage.Background>
+
 
     <VerticalStackLayout Padding="20">
 
@@ -26,7 +21,7 @@
                     <Label
                         FontAttributes="Bold"
                         Text="Reason :"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center"/>
 
                     <Button
                         Padding="5,2"
@@ -34,7 +29,7 @@
                         CornerRadius="10"
                         Text="friend"
                         TextColor="White"
-                        WidthRequest="60" />
+                        WidthRequest="60"/>
 
                     <Button
                         Padding="5,2"
@@ -42,7 +37,7 @@
                         CornerRadius="10"
                         Text="work"
                         TextColor="DarkGray"
-                        WidthRequest="60" />
+                        WidthRequest="60"/>
 
                     <Button
                         Padding="5,2"
@@ -50,7 +45,7 @@
                         CornerRadius="10"
                         Text="family"
                         TextColor="DarkGray"
-                        WidthRequest="60" />
+                        WidthRequest="60"/>
 
                     <Button
                         Padding="5,2"
@@ -58,7 +53,7 @@
                         CornerRadius="10"
                         Text="school"
                         TextColor="DarkGray"
-                        WidthRequest="60" />
+                        WidthRequest="60"/>
                 </HorizontalStackLayout>
             </ScrollView>
         </Frame>
@@ -79,7 +74,7 @@
                 TextColor="Black"
                 VerticalOptions="Start"
                 VerticalTextAlignment="Start"
-                WidthRequest="330" />
+                WidthRequest="330"/>
         </Frame>
 
         <!--  ✅ Loading Indicator  -->
@@ -88,17 +83,17 @@
             Margin="10"
             IsRunning="False"
             IsVisible="False"
-            Color="Blue" />
+            Color="Blue"/>
 
         <!--  ✅ ปุ่ม Next  -->
         <Button
             x:Name="AnalyzeButton"
-            Margin="0,350,0,20"
+            Margin="0,100,0,120"
             BackgroundColor="Transparent"
             Clicked="OnAnalyzeClicked"
             FontSize="16"
             HorizontalOptions="Center"
             Text="Next ➤"
-            TextColor="Black" />
+            TextColor="Black"/>
     </VerticalStackLayout>
 </ContentPage>

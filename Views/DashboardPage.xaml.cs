@@ -1,62 +1,103 @@
 using Microcharts;
 using SkiaSharp;
-using Righthere_Demo.Data;
 using Righthere_Demo.Models;
-using System.Linq;
+using Righthere_Demo.Data;
+using Microcharts.Maui;
 
 namespace Righthere_Demo.Views;
 
 public partial class DashboardPage : ContentPage
 {
 	private DiaryDatabase _diaryDb;
+
 	public DashboardPage()
 	{
 		InitializeComponent();
 		_diaryDb = new DiaryDatabase();
 	}
+
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
 
-		var diaries = await _diaryDb.GetDiariesByUserAsync(App.User.Userid);
-
-		if (diaries.Count == 0)
+		if (App.User == null)
 		{
-			await DisplayAlert("Info", "No diary entries found.", "OK");
+			await DisplayAlert("Error", "Please log in.", "OK");
 			return;
 		}
 
-		var moodScores = diaries.Select(d => ConvertMoodToScore(d.Mood)).ToList();
-		var averageMood = moodScores.Average();
-
-		AverageMoodLabel.Text = $"Average Mood Score: {averageMood:F2}";
-		var chart = new DonutChart
+		var diaries = await _diaryDb.GetDiariesByUserAsync(App.User.Userid);
+		if (diaries.Any())
 		{
-			Entries = new List<ChartEntry>
+			var moodCounts = diaries
+				.GroupBy(d => d.Mood)
+				.ToDictionary(g => g.Key, g => g.Count());
+
+			// Donut Chart
+			var donutEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
 			{
-				new ChartEntry((float)averageMood)
-				{
-					Label = "Mood",
-					ValueLabel = averageMood.ToString("F2"),
-					Color = SKColor.Parse("#3498db")
-				},
-			},
-			HoleRadius = 0.6f
-		};
+				Label = mc.Key,
+				ValueLabel = mc.Value.ToString(),
+				Color = GetMoodColor(mc.Key)
+			}).ToList();
 
-		MoodChart.Chart = chart;
-	}
-	private int ConvertMoodToScore(string mood)
-	{
-		return mood switch
+			DonutChart.Chart = new DonutChart
+			{
+				Entries = donutEntries,
+				LabelTextSize = 48,
+			};
+
+			// Horizontal Bar Chart
+			var barEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
+			{
+				Label = mc.Key,
+				ValueLabel = mc.Value.ToString(),
+				Color = GetMoodColor(mc.Key)
+			}).ToList();
+
+			BarChart.Chart = new BarChart
+			{
+				Entries = barEntries,
+				LabelTextSize = 48
+			};
+
+			// Tree Logic (mood มากสุด)
+			var dominantMood = moodCounts
+				.Aggregate((l, r) => l.Value <= r.Value ? r : l).Key;
+
+			SetTreeImage(dominantMood);
+		}
+		else
 		{
-			"Happy" => 5,
-			"Good" => 4,
-			"Neutral" => 3,
-			"Bad" => 2,
-			"Sad" => 1,
-			_ => 3
+			DonutChart.Chart = null;
+			BarChart.Chart = null;
+			TreeImage.Source = "empty.png";
+		}
+	}
+	private SKColor GetMoodColor(string mood)
+	{
+		return mood.ToLower() switch
+		{
+			"joy" => SKColors.Gold,
+			"sadness" => SKColors.DarkBlue,
+			"anger" => SKColors.Red,
+			"surprise" => SKColors.Gray,
+			"fear" => SKColors.Purple,
+			"love" => SKColors.Pink,
+			_ => SKColors.Green,
 		};
 	}
-
+	private void SetTreeImage(string mood)
+	{
+		TreeImage.Source = mood.ToLower() switch
+		{
+			"joy" => "joy.png",
+			"sadness" => "sadness.png",
+			"anger" => "anger.png",
+			"surprise" => "surprise.png",
+			"fear" => "fear.png",
+			"love" => "love.png",
+			_ => "empty.png",
+		};
+	}
 }

@@ -80,17 +80,22 @@ async def get_advice(data: Advice):
         - **Provide** a structured response including:
         1. **Suggestion**: A supportive and positive message and get advice. Your advice should be actionable and tailored to the user's situation as described in the diary and their pre-detected emotion.
         2. **Emotional Reflection**: Summarize the user's emotions and the situation described to help them understand their feelings and experiences.
-        3. **Mood**: Assign a one-word general emotional label that best describes the overall tone of the diary entry. This might be similar to or broader than the pre-detected emotion.
+        3. **Mood**: Assign a one-word general emotional label that best describes the overall tone of the diary entry. 
+            - ⚠️ Important: You must choose the **Mood** only from the following list:
+            ["sadness", "joy", "love", "anger", "fear", "surprise"]  
+            Do not invent new moods. Select the most appropriate one from this list only.
         4. **Keyword Extraction**: Identify 3-5 key topics or themes from the diary entry.
-        5. **Sentiment Score**: Assign a numerical sentiment score to the diary entry, ranging from -1.0 (very negative) to +1.0 (very positive), with 0.0 representing a neutral sentiment. This score should reflect the overall emotional valence of the entry.
+        5. **Sentiment Score**: Based on the diary's emotional content, assign a **numerical sentiment score only**, ranging from -1.0 (very negative) to +1.0 (very positive).  
+        ⚠️ Important: Respond only the number, such as -0.5, 0.75, 0.0. Do not add explanations or extra text.  
+        This score should reflect the overall emotional valence of the entry.
 
-    ### Response Format (Strictly follow this format):
-    - Suggestion: <Your response>
-    - Emotional Reflection: <Your response>
-    - Mood: <Your response>
-    - Keywords: <Keyword1, Keyword2, Keyword3, ...>
-    - Sentiment Score: <Numerical value between -1.0 and +1.0, e.g., 0.75 or -0.5>
-    """
+        ### Response Format (Strictly follow this format):
+        - Suggestion: <Your response>
+        - Emotional Reflection: <Your response>
+        - Mood: <One of: sadness, joy, love, anger, fear, surprise>
+        - Keywords: <Keyword1, Keyword2, Keyword3, ...>
+        - Sentiment Score: <Numerical value between -1.0 and +1.0, e.g., 0.75 or -0.5>
+        """
 
     # เรียกใช้ Gemini API
     response = client.models.generate_content(

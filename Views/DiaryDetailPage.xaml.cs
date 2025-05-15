@@ -1,5 +1,7 @@
 namespace Righthere_Demo.Views;
+
 using Righthere_Demo.Models;
+using Righthere_Demo.Data;
 
 public partial class DiaryDetailPage : ContentPage
 {

@@ -76,7 +76,7 @@ namespace Righthere_Demo.Services
         public string GetEmotionalReflection() => emotionalReflection;
         public string GetMood() => mood;
         public string GetKeywords() => keywords;
-        public double GetScore() => double.TryParse(score, out var result) ? result : 0.0;
+        public double GetScore() => double.TryParse(score, out var result) ? result : 5.0;
 
         public static async Task Main(string data)
         {

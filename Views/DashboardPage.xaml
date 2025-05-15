@@ -1,27 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Righthere_Demo.Views.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+    x:Class="Righthere_Demo.Views.DashboardPage"
     Title="Mood Dashboard">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*,Auto"
+              ColumnDefinitions="*">
 
-    <VerticalStackLayout Padding="20">
-        <Label
-            FontAttributes="Bold"
-            FontSize="24"
-            HorizontalOptions="Center"
-            Text="Mood Summary" />
+            <!-- Row 1: Title -->
+            <Label
+                Text="Weekly Mood Summary"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                Margin="0,10"/>
 
-        <microcharts:ChartView
-            x:Name="MoodChart"
-            HeightRequest="300"
-            WidthRequest="300" />
+            <!-- Row 2: Charts -->
+            <Grid Grid.Row="1"
+                  ColumnDefinitions="*,*">
+                <!-- Donut Chart -->
+                <charts:ChartView
+                    x:Name="DonutChart"
+                    HeightRequest="300"
+                    Grid.Column="0"/>
 
-        <Label
-            x:Name="AverageMoodLabel"
-            Margin="0,20"
-            FontSize="18"
-            HorizontalOptions="Center"
-            TextColor="Black" />
-    </VerticalStackLayout>
+                <!-- Horizontal Bar Chart -->
+                <charts:ChartView
+                    x:Name="BarChart"
+                    HeightRequest="300"
+                    WidthRequest="80"
+                    Grid.Column="1"/>
+            </Grid>
+
+            <!-- Row 3: Tree Image -->
+            <Image
+                x:Name="TreeImage"
+                Source="empty.png"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Grid.Row="2"
+                Margin="0,10"/>
+        </Grid>
+    </ScrollView>
 </ContentPage>

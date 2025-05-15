@@ -9,16 +9,25 @@ namespace Righthere_Demo.Views
 {
     public partial class DiaryPage : ContentPage
     {
+        private readonly Users _user;
+        private readonly string _colorHex;
+        private readonly int _sentimentScore;
 
-        public DiaryPage(Users users)
+        public DiaryPage(Users users, string colorHex = "#FFFFFF", int sentimentScore = 0)
         {
             InitializeComponent();
+            _user = users;
+            _colorHex = colorHex;
+            _sentimentScore = sentimentScore;
 
+            this.BackgroundColor = Color.FromArgb(_colorHex);
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
             Console.WriteLine("📍 DiaryPage Appeared");
+            Console.WriteLine($"🎨 Color: {_colorHex}, Score: {_sentimentScore}");
             if (App.User == null)
             {
                 DisplayAlert("Error", "User not logged in. Redirecting to login...", "OK");
@@ -47,7 +56,7 @@ namespace Righthere_Demo.Views
             string suggestion = api.GetSuggestion();
             string keyword = api.GetKeywords();
             string emotion = api.GetEmotionalReflection();
-            double score = api.GetScore();
+            double score = _sentimentScore;
 
             if (string.IsNullOrWhiteSpace(mood) || string.IsNullOrWhiteSpace(suggestion) || string.IsNullOrWhiteSpace(keyword))
             {
