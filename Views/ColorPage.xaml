@@ -4,6 +4,14 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              x:Class="Righthere_Demo.Views.ColorPage"
              Title="ColorPage">
+
+       <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFFFFF" Offset="0.1" />
+            <GradientStop Color="#FFFFFF" Offset="1.0" />
+        </LinearGradientBrush>
+       </ContentPage.Background>
+
        <VerticalStackLayout Padding="20"
                             Spacing="20">
               <Label Text="แตะที่วงล้อเพื่อเลือกสี"
@@ -24,17 +32,19 @@
 
               <Label Text="คะแนนความใกล้เคียงกับอารมณ์ของคุณ"
                      FontSize="16"/>
+
               <Slider x:Name="scoreSlider"
                       Minimum="0"
                       Maximum="10"
                       Value="5"
                       ValueChanged="OnScoreChanged"/>
+
               <Label x:Name="scoreLabel"
                      Text="คะแนน: 5"
                      FontSize="14"
                      HorizontalOptions="Center"/>
 
-              <Button Text="ยืนยัน"
+              <Button Text="Confirm"
                       Clicked="OnConfirmClicked"/>
        </VerticalStackLayout>
 </ContentPage>
