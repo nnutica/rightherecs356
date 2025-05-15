@@ -97,32 +97,6 @@
                             </VerticalStackLayout>
                         </Frame>
 
-                        <Frame
-                            Padding="15"
-                            BackgroundColor="White"
-                            CornerRadius="15"
-                            HasShadow="True"
-                            HeightRequest="120"
-                            WidthRequest="150">
-                            <VerticalStackLayout>
-                                <Label
-                                    FontSize="12"
-                                    HorizontalTextAlignment="Center"
-                                    Text="Stock Meter"
-                                    TextColor="Black" />
-                                <Grid>
-                                    <ProgressBar
-                                        x:Name="StockMeter"
-                                        Progress="0.5"
-                                        HeightRequest="10"
-                                        WidthRequest="100"
-                                        BackgroundColor="#E0E0E0"
-                                        ProgressColor="#4CAF50"
-                                        VerticalOptions="Center"
-                                        HorizontalOptions="Center" />
-                                </Grid>
-                            </VerticalStackLayout>
-                        </Frame>
 
                     </HorizontalStackLayout>
                 </Grid>
