@@ -18,7 +18,7 @@
 
     </ContentPage.ToolbarItems>
     <StackLayout Padding="20"
-            Spacing="30">
+                 Spacing="30">
 
         <Label
             x:Name="welcomeLabel"
@@ -60,18 +60,10 @@
             WidthRequest="200"/>
 
         <StackLayout VerticalOptions="FillAndExpand"/>
-        <Grid ColumnDefinitions="*,*,*">
+        <Grid ColumnDefinitions="*,*">
+
             <Button
                 Grid.Column="0"
-                Margin="2"
-                BackgroundColor="#2A614E"
-                Clicked="OnTreePageClicked"
-                CornerRadius="10"
-                HeightRequest="50"
-                Opacity="50"
-                Text="🌱 Mind Tree"/>
-            <Button
-                Grid.Column="1"
                 Margin="2"
                 BackgroundColor="#F1B24A"
                 Clicked="OnDiaryPageClicked"
@@ -80,7 +72,7 @@
                 Opacity="50"
                 Text="📔 Diary"/>
             <Button
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="2"
                 BackgroundColor="#FF71BCF5"
                 Clicked="OnDashboardClicked"

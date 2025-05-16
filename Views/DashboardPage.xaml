@@ -50,7 +50,7 @@
                   RowDefinitions="Auto">
 
                 <!-- Donut Chart -->
-                <Frame Grid.Column="0"
+                <!-- <Frame Grid.Column="0"
                        BackgroundColor="White"
                        CornerRadius="15"
                        Padding="15"
@@ -61,7 +61,7 @@
                         x:Name="DonutChart"
                         HeightRequest="300"
                         WidthRequest="120"/>
-                </Frame>
+                </Frame> -->
 
                 <!-- Horizontal Bar Chart -->
                 <Frame Grid.Column="1"

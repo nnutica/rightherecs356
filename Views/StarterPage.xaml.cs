@@ -127,10 +127,7 @@ public partial class StarterPage : ContentPage
 		await Navigation.PushAsync(new DiaryHistoryPage());
 	}
 
-	private async void OnTreePageClicked(object sender, EventArgs e)
-	{
-		await Navigation.PushAsync(new TreePage());
-	}
+
 
 	private async void OnDiaryPageClicked(object sender, EventArgs e)
 	{

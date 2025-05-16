@@ -33,19 +33,19 @@ public partial class DashboardPage : ContentPage
 				.GroupBy(d => d.Mood)
 				.ToDictionary(g => g.Key, g => g.Count());
 
-			// Donut Chart
-			var donutEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
-			{
-				Label = mc.Key,
-				ValueLabel = mc.Value.ToString(),
-				Color = GetMoodColor(mc.Key)
-			}).ToList();
+			// // Donut Chart
+			// var donutEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
+			// {
+			// 	Label = mc.Key,
+			// 	ValueLabel = mc.Value.ToString(),
+			// 	Color = GetMoodColor(mc.Key)
+			// }).ToList();
 
-			DonutChart.Chart = new DonutChart
-			{
-				Entries = donutEntries,
-				LabelTextSize = 48,
-			};
+			// DonutChart.Chart = new DonutChart
+			// {
+			// 	Entries = donutEntries,
+			// 	LabelTextSize = 48,
+			// };
 
 			// Horizontal Bar Chart
 			var barEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
@@ -86,7 +86,7 @@ public partial class DashboardPage : ContentPage
 		}
 		else
 		{
-			DonutChart.Chart = null;
+			// DonutChart.Chart = null;
 			BarChart.Chart = null;
 			TreeImage.Source = "empty.png";
 		}

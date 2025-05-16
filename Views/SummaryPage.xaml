@@ -21,7 +21,7 @@
                         Text="Summary"
                         TextColor="White"
                         VerticalOptions="Center"
-                        WidthRequest="420" />
+                        WidthRequest="420"/>
                 </Grid>
 
                 <!--  Mood Description  -->
@@ -33,7 +33,7 @@
                         HeightRequest="100"
                         HorizontalTextAlignment="Center"
                         TextColor="Black"
-                        WidthRequest="360" />
+                        WidthRequest="360"/>
                 </Grid>
 
                 <!--  Image Section  -->
@@ -44,12 +44,13 @@
                         HeightRequest="150"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"
-                        WidthRequest="150" />
+                        WidthRequest="150"/>
                 </Grid>
 
                 <!--  Placeholder for Graphs  -->
                 <Grid Grid.Row="3">
-                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Spacing="20">
 
                         <Frame
                             Padding="15"
@@ -63,14 +64,14 @@
                                     FontSize="12"
                                     HorizontalTextAlignment="Center"
                                     Text="Keyword"
-                                    TextColor="Black" />
+                                    TextColor="Black"/>
                                 <Label
                                     x:Name="Keywordtext"
                                     Margin="0,10,0,0"
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     HorizontalTextAlignment="Center"
-                                    TextColor="Black" />
+                                    TextColor="Black"/>
                             </VerticalStackLayout>
                         </Frame>
 
@@ -86,14 +87,14 @@
                                     FontSize="12"
                                     HorizontalTextAlignment="Center"
                                     Text="Mood"
-                                    TextColor="Black" />
+                                    TextColor="Black"/>
                                 <Label
                                     x:Name="Moodtex"
                                     Margin="0,10,0,0"
                                     FontAttributes="Bold"
                                     FontSize="16"
                                     HorizontalTextAlignment="Center"
-                                    TextColor="Gray" />
+                                    TextColor="Gray"/>
                             </VerticalStackLayout>
                         </Frame>
 
@@ -102,7 +103,8 @@
                 </Grid>
 
                 <!--  Advice Section  -->
-                <Grid Grid.Row="4" ColumnDefinitions="Auto,*">
+                <Grid Grid.Row="4"
+                      ColumnDefinitions="Auto,*">
                     <Label
                         Grid.Column="0"
                         Margin="0,20,0,5"
@@ -110,7 +112,7 @@
                         FontAttributes="Bold"
                         FontSize="14"
                         Text="Advice :"
-                        TextColor="Black" />
+                        TextColor="Black"/>
 
                     <Label
                         x:Name="Advicetext"
@@ -119,9 +121,9 @@
                         Padding="10"
                         FontSize="14"
                         HorizontalTextAlignment="Center"
-                        TextColor="Black" />
+                        TextColor="Black"/>
                 </Grid>
-                
+
                 <!--  score Section  -->
                 <Grid Grid.Row="5">
                     <Frame
@@ -133,20 +135,20 @@
                         WidthRequest="150">
                         <HorizontalStackLayout>
                             <Label
-                                    Margin="0,20,0,5"
-                                    Padding="10"
-                                    FontAttributes="Bold"
-                                    FontSize="14"
-                                    Text="Score :"
-                                    TextColor="Black" />
+                                Margin="0,20,0,5"
+                                Padding="10"
+                                FontAttributes="Bold"
+                                FontSize="14"
+                                Text="Score :"
+                                TextColor="Black"/>
 
                             <Label
-                                    x:Name="scoretext"
-                                    Margin="0,20,0,20"
-                                    Padding="10"
-                                    FontSize="14"
-                                    HorizontalTextAlignment="Center"
-                                    TextColor="Black" />
+                                x:Name="scoretext"
+                                Margin="0,20,0,20"
+                                Padding="10"
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"/>
                         </HorizontalStackLayout>
                     </Frame>
                 </Grid>
@@ -162,7 +164,7 @@
                         FontSize="16"
                         HorizontalOptions="Center"
                         Text="Next ➤"
-                        TextColor="Black" />
+                        TextColor="Black"/>
                 </Grid>
             </Grid>
         </VerticalStackLayout>
