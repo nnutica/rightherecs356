@@ -41,12 +41,13 @@
                     FontAttributes="Bold"
                     FontSize="20"
                     HorizontalOptions="Center"
-                    Text="ประวัติการเขียนไดอารี่"/>
+                    Text="Diary History"/>
                 <Button
                     Margin="0,10,0,0"
                     Clicked="OnDiaryHistoryClicked"
                     HorizontalOptions="Center"
-                    Text="ดูไดอารี่ทั้งหมด"/>
+                    BackgroundColor="#2A614E"
+                    Text="View all diaries"/>
             </StackLayout>
 
         </Frame>
@@ -62,28 +63,31 @@
         <Grid ColumnDefinitions="*,*,*">
             <Button
                 Grid.Column="0"
-                Margin="5"
-                BackgroundColor="#d0f0c0"
+                Margin="2"
+                BackgroundColor="#2A614E"
                 Clicked="OnTreePageClicked"
                 CornerRadius="10"
                 HeightRequest="50"
-                Text="🌱 ต้นไม้"/>
+                Opacity="50"
+                Text="🌱 Mind Tree"/>
             <Button
                 Grid.Column="1"
-                Margin="5"
-                BackgroundColor="#fddde6"
+                Margin="2"
+                BackgroundColor="#F1B24A"
                 Clicked="OnDiaryPageClicked"
                 CornerRadius="10"
                 HeightRequest="50"
-                Text="📔 ไดอารี่"/>
+                Opacity="50"
+                Text="📔 Diary"/>
             <Button
                 Grid.Column="2"
-                Margin="5"
+                Margin="2"
                 BackgroundColor="#FF71BCF5"
                 Clicked="OnDashboardClicked"
                 CornerRadius="10"
                 HeightRequest="50"
-                Text="📶 แดชบอร์ด"/>
+                Opacity="50"
+                Text="📶 Dashboard"/>
         </Grid>
     </StackLayout>
 </ContentPage>
