@@ -39,7 +39,7 @@
                 <Frame BackgroundColor="White"
                        CornerRadius="15"
                        Padding="15"
-                       WidthRequest="200"
+                       WidthRequest="150"
                        HeightRequest="350"
                        HasShadow="True">
                     <charts:ChartView
@@ -52,7 +52,7 @@
                 <Frame BackgroundColor="White"
                        CornerRadius="15"
                        Padding="15"
-                       WidthRequest="200"
+                       WidthRequest="150"
                        HeightRequest="350"
                        HasShadow="True">
                     <charts:ChartView
