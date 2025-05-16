@@ -36,33 +36,35 @@
 
             <!-- Row 2: Charts -->
             <Grid Grid.Row="1"
-                  ColumnDefinitions="*,*">
+                  ColumnDefinitions="*,*"
+                  RowDefinitions="Auto">
 
                 <!-- Donut Chart -->
-                <Frame BackgroundColor="White"
+                <Frame Grid.Column="0"
+                       BackgroundColor="White"
                        CornerRadius="15"
                        Padding="15"
-                       WidthRequest="150"
+                       WidthRequest="180"
                        HeightRequest="350"
                        HasShadow="True">
                     <charts:ChartView
                         x:Name="DonutChart"
                         HeightRequest="300"
-                        Grid.Column="0"/>
+                        WidthRequest="120"/>
                 </Frame>
 
                 <!-- Horizontal Bar Chart -->
-                <Frame BackgroundColor="White"
+                <Frame Grid.Column="1"
+                       BackgroundColor="White"
                        CornerRadius="15"
                        Padding="15"
-                       WidthRequest="150"
+                       WidthRequest="180"
                        HeightRequest="350"
                        HasShadow="True">
                     <charts:ChartView
                         x:Name="BarChart"
                         HeightRequest="300"
-                        WidthRequest="80"
-                        Grid.Column="1"/>
+                        WidthRequest="120"/>
                 </Frame>
             </Grid>
 
