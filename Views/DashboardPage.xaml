@@ -6,9 +6,12 @@
     x:Class="Righthere_Demo.Views.DashboardPage"
     Title="Mood Dashboard">
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#D7E7FF" Offset="0.1" />
-            <GradientStop Color="#2A614E" Offset="1.0" />
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="#D7E7FF"
+                          Offset="0.1"/>
+            <GradientStop Color="#2A614E"
+                          Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
 
@@ -16,25 +19,25 @@
         <Grid RowDefinitions="Auto,*,Auto"
               ColumnDefinitions="*">
 
-            
+
             <!-- Row 1: Title -->
             <Label Grid.Row="0"
-                    Padding="15"
-                    Background="#2a614e"
-                    FontAttributes="Bold"
-                    FontSize="24"
-                    HeightRequest="70"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center"
-                    Text="Weekly Mood Summary"
-                    TextColor="White"
-                    VerticalOptions="Center"
-                    WidthRequest="420" />
+                   Padding="15"
+                   Background="#2a614e"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   HeightRequest="70"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Text="Weekly Mood Summary"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   WidthRequest="420"/>
 
-            <!-- Row 2: Charts -->  
+            <!-- Row 2: Charts -->
             <Grid Grid.Row="1"
                   ColumnDefinitions="*,*">
-                
+
                 <!-- Donut Chart -->
                 <Frame BackgroundColor="White"
                        CornerRadius="15"
@@ -43,9 +46,9 @@
                        HeightRequest="350"
                        HasShadow="True">
                     <charts:ChartView
-                            x:Name="DonutChart"
-                            HeightRequest="300"
-                            Grid.Column="0"/>
+                        x:Name="DonutChart"
+                        HeightRequest="300"
+                        Grid.Column="0"/>
                 </Frame>
 
                 <!-- Horizontal Bar Chart -->
