@@ -19,6 +19,7 @@ public partial class DiaryHistoryPage : ContentPage
 	protected override async void OnAppearing()
 	{
 		base.OnAppearing();
+		SetupDateLabels();
 
 		var allDiaries = await _diaryDb.GetDiariesByUserAsync(App.User.Userid);
 
@@ -43,6 +44,28 @@ public partial class DiaryHistoryPage : ContentPage
 				Diaries = group.OrderByDescending(d => d.CreatedAt).ToList()
 			});
 		}
+
+
+
+
+	}
+
+	void SetupDateLabels()
+	{
+		DateTime monday = GetMondayOfThisWeek();
+		DateTime Nextmonday = monday.AddDays(7);
+
+		LeftDayLabel.Text = monday.Day.ToString();
+		LeftMonthLabel.Text = monday.ToString("MMMM").ToUpper();
+
+		RightDayLabel.Text = Nextmonday.Day.ToString();
+		RightMonthLabel.Text = Nextmonday.ToString("MMMM").ToUpper();
+	}
+	DateTime GetMondayOfThisWeek()
+	{
+		var today = DateTime.Today;
+		int diff = (7 + (today.DayOfWeek - DayOfWeek.Monday)) % 7;
+		return today.AddDays(-diff);
 	}
 
 	private async void OnDiaryTapped(object sender, TappedEventArgs e)

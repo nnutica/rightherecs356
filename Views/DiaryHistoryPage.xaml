@@ -6,7 +6,8 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:converters="clr-namespace:Righthere_Demo.Services"
     Title="Diary History"
-    BackgroundColor="#FAFAFA">
+    Padding="0,20,0,0"
+    BackgroundColor="#FFE6FC99">
 
     <ContentPage.Resources>
         <converters:MoodToColorConverter x:Key="MoodToColorConverter"/>
@@ -15,81 +16,157 @@
     <ScrollView>
         <VerticalStackLayout Padding="20"
                              Spacing="15">
-            <Label
-                FontAttributes="Bold"
-                FontSize="26"
-                HorizontalOptions="Center"
-                Text="📘 My Diary Agenda"/>
+            <Grid RowDefinitions="Auto,Auto">
+                <Border HeightRequest="140"
+                        Margin="50,0,50,0"
+                        HorizontalOptions="Center">
+                    <Grid ColumnDefinitions="*,*"
+                          RowDefinitions="*,Auto,20"
+                          ColumnSpacing="0"
+                          HorizontalOptions="FillAndExpand">
 
-            <CollectionView
-                x:Name="DiaryListView"
-                ItemsSource="{Binding GroupedDiaries}"
-                SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <toolkit:Expander>
-                            <toolkit:Expander.Header>
-                                <Grid Padding="10">
-                                    <BoxView
-                                        HeightRequest="50"
-                                        CornerRadius="10"
-                                        BackgroundColor="{Binding Mood, Converter={StaticResource MoodToColorConverter}}"
-                                        HorizontalOptions="Fill"
-                                        VerticalOptions="Center"/>
+                        <!-- ซ้าย: วันจันทร์ -->
+                        <Rectangle Grid.RowSpan="3"
+                                   WidthRequest="100"
+                                   BackgroundColor="#F564A9"/>
+                        <Rectangle Grid.Column="1"
+                                   Grid.RowSpan="3"
+                                   WidthRequest="100"
+                                   BackgroundColor="#FAEDCA"/>
 
-                                    <Label
-                                        Text="{Binding Date, StringFormat='  {0:dddd, dd MMM yyyy}'}"
-                                        FontAttributes="Bold"
-                                        TextColor="White"
-                                        FontSize="16"
-                                        VerticalOptions="Center"
-                                        Margin="15,0,0,0"/>
-                                </Grid>
-                            </toolkit:Expander.Header>
+                        <StackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                            <Label x:Name="LeftDayLabel"
+                                   Text="--"
+                                   TextColor="White"
+                                   FontSize="36"
+                                   Margin="0"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="LeftMonthLabel"
+                                   Text="--"
+                                   TextColor="White"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   Margin="0"/>
+                        </StackLayout>
 
-                            <VerticalStackLayout Padding="10"
-                                                 Spacing="10">
-                                <CollectionView ItemsSource="{Binding Diaries}"
-                                                SelectionMode="None">
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Frame
-                                                Padding="12"
-                                                BackgroundColor="White"
-                                                CornerRadius="14"
-                                                HasShadow="True">
+                        <!-- ขวา: วันอาทิตย์ -->
+                        <StackLayout Grid.Column="1"
+                                     HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                            <Label x:Name="RightDayLabel"
+                                   Text="--"
+                                   TextColor="#F564A9"
+                                   FontSize="36"
+                                   Margin="0"
+                                   HorizontalOptions="Center"/>
+                            <Label x:Name="RightMonthLabel"
+                                   Text="--"
+                                   TextColor="#F564A9"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   Margin="0"/>
+                        </StackLayout>
 
-                                                <Frame.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="OnDiaryTapped"
-                                                                          CommandParameter="{Binding .}"/>
-                                                </Frame.GestureRecognizers>
+                        <Rectangle Grid.Row="1"
+                                   Grid.RowSpan="3"
+                                   Grid.ColumnSpan="2"
+                                   BackgroundColor="WhiteSmoke"
+                                   WidthRequest="120"
+                                   HeightRequest="2"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        <Border Grid.Row="1"
+                                Grid.RowSpan="3"
+                                HeightRequest="10"
+                                WidthRequest="10"
+                                StrokeShape="RoundRectangle 5"
+                                BackgroundColor="#F1F3F7"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                        <Border Grid.Row="1"
+                                Grid.RowSpan="3"
+                                Grid.Column="1"
+                                HeightRequest="10"
+                                WidthRequest="10"
+                                StrokeShape="RoundRectangle 5"
+                                BackgroundColor="#C9D6EF"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="1">
+                    <CollectionView
+                        x:Name="DiaryListView"
+                        ItemsSource="{Binding GroupedDiaries}"
+                        SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <toolkit:Expander>
+                                    <toolkit:Expander.Header>
+                                        <Grid Padding="10">
+                                            <BoxView
+                                                HeightRequest="50"
+                                                CornerRadius="10"
+                                                BackgroundColor="{Binding Mood, Converter={StaticResource MoodToColorConverter}}"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="Center"/>
 
-                                                <VerticalStackLayout Spacing="6">
-                                                    <Label
-                                                        Text="{Binding Content}"
-                                                        FontSize="14"
-                                                        TextColor="Black"/>
+                                            <Label
+                                                Text="{Binding Date, StringFormat='  {0:dddd, dd MMM yyyy}'}"
+                                                FontAttributes="Bold"
+                                                TextColor="White"
+                                                FontSize="16"
+                                                VerticalOptions="Center"
+                                                Margin="15,0,0,0"/>
+                                        </Grid>
+                                    </toolkit:Expander.Header>
 
-                                                    <Label
-                                                        Text="{Binding Mood, StringFormat='Mood: {0}'}"
-                                                        FontSize="12"
-                                                        TextColor="#2E8B57"/>
+                                    <VerticalStackLayout Padding="10"
+                                                         Spacing="10">
+                                        <CollectionView ItemsSource="{Binding Diaries}"
+                                                        SelectionMode="None">
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Frame
+                                                        Padding="12"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="14"
+                                                        HasShadow="True">
 
-                                                    <Label
-                                                        Text="{Binding Reason, StringFormat='Reason: {0}'}"
-                                                        FontSize="12"
-                                                        TextColor="#696969"/>
-                                                </VerticalStackLayout>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="OnDiaryTapped"
+                                                                                  CommandParameter="{Binding .}"/>
+                                                        </Frame.GestureRecognizers>
 
-                            </VerticalStackLayout>
-                        </toolkit:Expander>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                                        <VerticalStackLayout Spacing="6">
+                                                            <Label
+                                                                Text="{Binding Content}"
+                                                                FontSize="14"
+                                                                TextColor="Black"/>
+
+                                                            <Label
+                                                                Text="{Binding Mood, StringFormat='Mood: {0}'}"
+                                                                FontSize="12"
+                                                                TextColor="#2E8B57"/>
+
+                                                            <Label
+                                                                Text="{Binding Reason, StringFormat='Reason: {0}'}"
+                                                                FontSize="12"
+                                                                TextColor="#696969"/>
+                                                        </VerticalStackLayout>
+                                                    </Frame>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+
+                                    </VerticalStackLayout>
+                                </toolkit:Expander>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
