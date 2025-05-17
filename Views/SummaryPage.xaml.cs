@@ -15,8 +15,9 @@ namespace Righthere_Demo.Views
         private string Emotion;
         private string content;
         private string score;
+        private string reason;
 
-        public SummaryPage(string mood, string Suggestion, string Keyword, string Emotion, string content, double score)
+        public SummaryPage(string mood, string Suggestion, string Keyword, string Emotion, string content, double score, string reason)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
@@ -27,6 +28,7 @@ namespace Righthere_Demo.Views
             this.Emotion = Emotion;
             this.content = content;
             this.score = score.ToString();
+            this.reason = reason;
             SetEmotionImage(mood);
 
             // ✅ ใช้ OnAppearing() เพื่ออัปเดต UI
@@ -43,6 +45,7 @@ namespace Righthere_Demo.Views
             Keywordtext.Text = this.keyword;
             Emotiontext.Text = this.Emotion;
             scoretext.Text = this.score;
+
         }
         private async void GoMainPage(object sender, EventArgs e)
         {
@@ -63,7 +66,8 @@ namespace Righthere_Demo.Views
                 var diary = new DiaryData
                 {
                     UserId = currentUser.Userid,
-                    Content = content,  // ต้องแน่ใจว่า content, mood, Sugges, keyword และ Emotion ถูกกำหนดค่าก่อน
+                    Content = content,
+                    Reason = reason,  // ต้องแน่ใจว่า content, mood, Sugges, keyword และ Emotion ถูกกำหนดค่าก่อน
                     Mood = mood,
                     SentimentScore = double.Parse(score),
                     Suggestion = Sugges,

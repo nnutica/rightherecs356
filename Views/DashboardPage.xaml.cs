@@ -3,6 +3,7 @@ using SkiaSharp;
 using Righthere_Demo.Models;
 using Righthere_Demo.Data;
 using Microcharts.Maui;
+using System.Linq;
 
 namespace Righthere_Demo.Views;
 
@@ -27,27 +28,38 @@ public partial class DashboardPage : ContentPage
 		}
 
 		var diaries = await _diaryDb.GetDiariesByUserAsync(App.User.Userid);
+
 		if (diaries.Any())
 		{
+			// สร้าง list entries สำหรับ LineChart แสดง sentiment score ตามวันที่
+			var lineEntries = diaries
+				.OrderBy(d => d.CreatedAt)
+				.Select(d => new ChartEntry((float)d.SentimentScore)  // สมมติ Diary มี property SentimentScore เป็น float/double
+				{
+					Label = d.CreatedAt.ToString("MM/dd"),    // แสดงวันที่เป็น MM/dd
+					ValueLabel = d.SentimentScore.ToString("0.00"),
+					Color = SKColors.Blue
+				}).ToList();
+
+			LineChart.Chart = new LineChart
+			{
+				Entries = lineEntries,
+				LineMode = LineMode.Straight,
+				LineSize = 4,
+				PointMode = PointMode.Circle,
+				PointSize = 10,
+				ValueLabelOrientation = Orientation.Horizontal,
+				LabelOrientation = Orientation.Horizontal,
+				LabelTextSize = 30,
+				ValueLabelTextSize = 30,
+				Margin = 20
+			};
+
+			// สร้าง BarChart แบบเดิมสำหรับ mood counts
 			var moodCounts = diaries
 				.GroupBy(d => d.Mood)
 				.ToDictionary(g => g.Key, g => g.Count());
 
-			// // Donut Chart
-			// var donutEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
-			// {
-			// 	Label = mc.Key,
-			// 	ValueLabel = mc.Value.ToString(),
-			// 	Color = GetMoodColor(mc.Key)
-			// }).ToList();
-
-			// DonutChart.Chart = new DonutChart
-			// {
-			// 	Entries = donutEntries,
-			// 	LabelTextSize = 48,
-			// };
-
-			// Horizontal Bar Chart
 			var barEntries = moodCounts.Select(mc => new ChartEntry(mc.Value)
 			{
 				Label = mc.Key,
@@ -61,7 +73,7 @@ public partial class DashboardPage : ContentPage
 				LabelTextSize = 48
 			};
 
-			// Tree Logic (เช็คกรณีพิเศษ)
+			// กำหนด TreeImage ตาม mood ที่เด่น
 			var maxCount = moodCounts.Max(x => x.Value);
 			var allMaxMoods = moodCounts.Where(x => x.Value == maxCount).Select(x => x.Key).ToList();
 
@@ -69,16 +81,11 @@ public partial class DashboardPage : ContentPage
 
 			if (allMaxMoods.Count == moodCounts.Count)
 			{
-				// ทุก mood count เท่ากันหมด → เอา mood ล่าสุด
 				var latestDiary = diaries.OrderByDescending(d => d.CreatedAt).FirstOrDefault();
-				if (latestDiary != null)
-					dominantMood = latestDiary.Mood;
-				else
-					dominantMood = "empty";
+				dominantMood = latestDiary?.Mood ?? "empty";
 			}
 			else
 			{
-				// มี mood เด่นชัด → ใช้ logic เดิม
 				dominantMood = moodCounts.Aggregate((l, r) => l.Value <= r.Value ? r : l).Key;
 			}
 
@@ -86,7 +93,7 @@ public partial class DashboardPage : ContentPage
 		}
 		else
 		{
-			// DonutChart.Chart = null;
+			LineChart.Chart = null;
 			BarChart.Chart = null;
 			TreeImage.Source = "empty.png";
 		}

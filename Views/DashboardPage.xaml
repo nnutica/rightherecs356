@@ -5,6 +5,7 @@
     xmlns:charts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
     x:Class="Righthere_Demo.Views.DashboardPage"
     Title="Mood Dashboard">
+
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0"
                              EndPoint="1,1">
@@ -16,11 +17,10 @@
     </ContentPage.Background>
 
     <ScrollView>
-        <Grid RowDefinitions="Auto,*,Auto"
+        <Grid RowDefinitions="Auto,*,Auto,Auto"
               ColumnDefinitions="*">
 
-
-            <!-- Row 1: Title -->
+            <!-- Title Row -->
             <Label Grid.Row="0"
                    Padding="15"
                    Background="#2a614e"
@@ -34,50 +34,49 @@
                    VerticalOptions="Center"
                    WidthRequest="420"/>
 
-                        <!-- Row 3: Tree Image -->
-            <Image
-                x:Name="TreeImage"
-                Source="empty.png"
-                HeightRequest="200"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Grid.Row="1"
-                Margin="0,10"/>
+            <!-- Tree Image Row -->
+            <Image x:Name="TreeImage"
+                   Source="empty.png"
+                   HeightRequest="200"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Row="1"
+                   Margin="0,10"/>
 
-            <!-- Row 2: Charts -->
+            <!-- Chart Row -->
             <Grid Grid.Row="2"
-                  ColumnDefinitions="*,*"
-                  RowDefinitions="Auto">
-
-                <!-- Donut Chart -->
-                <!-- <Frame Grid.Column="0"
-                       BackgroundColor="White"
-                       CornerRadius="15"
-                       Padding="15"
-                       WidthRequest="180"
-                       HeightRequest="350"
-                       HasShadow="True">
+                  ColumnDefinitions="*">
+                <!-- Line Chart -->
+                <Frame
+                    BackgroundColor="White"
+                    CornerRadius="15"
+                    Padding="15"
+                    Margin="10"
+                    HeightRequest="350"
+                    HasShadow="True">
                     <charts:ChartView
-                        x:Name="DonutChart"
-                        HeightRequest="300"
-                        WidthRequest="120"/>
-                </Frame> -->
+                        x:Name="LineChart"
+                        HeightRequest="300"/>
+                </Frame>
+            </Grid>
+            <Grid Grid.Row="3"
+                  ColumnDefinitions="*">
 
-                <!-- Horizontal Bar Chart -->
-                <Frame Grid.Column="1"
+                <!-- Bar Chart -->
+                <Frame Grid.Row="1"
                        BackgroundColor="White"
                        CornerRadius="15"
                        Padding="15"
-                       WidthRequest="180"
-                       HeightRequest="350"
+                       Margin="10"
+                       HeightRequest="200"
                        HasShadow="True">
                     <charts:ChartView
                         x:Name="BarChart"
-                        HeightRequest="300"
-                        WidthRequest="120"/>
+                        HeightRequest="180"/>
                 </Frame>
             </Grid>
 
         </Grid>
     </ScrollView>
+
 </ContentPage>

@@ -9,6 +9,7 @@ namespace Righthere_Demo.Views
 {
     public partial class DiaryPage : ContentPage
     {
+        private string selectedReason = "friend";
         private readonly Users _user;
         private readonly string _colorHex;
         private readonly int _sentimentScore;
@@ -36,6 +37,31 @@ namespace Righthere_Demo.Views
             }
         }
 
+        private void OnReasonButtonClicked(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                selectedReason = button.Text;
+                UpdateReasonButtonStyles();
+            }
+        }
+        private void UpdateReasonButtonStyles()
+        {
+            FriendButton.BackgroundColor = selectedReason == "friend" ? Colors.DarkGreen : Colors.LightGray;
+            FriendButton.TextColor = selectedReason == "friend" ? Colors.White : Colors.DarkGray;
+
+            WorkButton.BackgroundColor = selectedReason == "work" ? Colors.DarkGreen : Colors.LightGray;
+            WorkButton.TextColor = selectedReason == "work" ? Colors.White : Colors.DarkGray;
+
+            FamilyButton.BackgroundColor = selectedReason == "family" ? Colors.DarkGreen : Colors.LightGray;
+            FamilyButton.TextColor = selectedReason == "family" ? Colors.White : Colors.DarkGray;
+
+            SchoolButton.BackgroundColor = selectedReason == "school" ? Colors.DarkGreen : Colors.LightGray;
+            SchoolButton.TextColor = selectedReason == "school" ? Colors.White : Colors.DarkGray;
+        }
+
+
+
         private async void OnAnalyzeClicked(object sender, EventArgs e)
         {
             string content = DiaryEntry.Text;
@@ -58,6 +84,7 @@ namespace Righthere_Demo.Views
             string keyword = api.GetKeywords();
             string emotion = api.GetEmotionalReflection();
             double score = _sentimentScore;
+            string reason = selectedReason;
 
             if (string.IsNullOrWhiteSpace(mood) || string.IsNullOrWhiteSpace(suggestion) || string.IsNullOrWhiteSpace(keyword))
             {
@@ -83,7 +110,7 @@ namespace Righthere_Demo.Views
             LoadingIndicator.IsVisible = false;
             LoadingIndicator.IsRunning = false;
 
-            await Navigation.PushAsync(new SummaryPage(mood, suggestion, keyword, emotion, content, score));
+            await Navigation.PushAsync(new SummaryPage(mood, suggestion, keyword, emotion, content, score, reason));
         }
     }
 }
