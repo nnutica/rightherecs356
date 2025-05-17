@@ -29,11 +29,15 @@
             x:Name="dateLabel"
             FontSize="18"
             HorizontalOptions="Center"/>
+        <BoxView
+            Color="#f9f9f9"
+            Opacity="0.7"
+            CornerRadius="10"
+            Margin="10"/>
 
         <Frame
-            Padding="20"
-            BackgroundColor="#f9f9f9"
-            BorderColor="Gray"
+            Padding="10"
+            BackgroundColor="Transparent"
             CornerRadius="10"
             HasShadow="True">
             <StackLayout>
@@ -49,7 +53,6 @@
                     BackgroundColor="#2A614E"
                     Text="View all diaries"/>
             </StackLayout>
-
         </Frame>
 
         <Image

@@ -6,10 +6,13 @@
              Title="ColorPage">
 
        <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#FFFFFF" Offset="0.1" />
-            <GradientStop Color="#FFFFFF" Offset="1.0" />
-        </LinearGradientBrush>
+              <LinearGradientBrush StartPoint="0,0"
+                            EndPoint="1,1">
+                     <GradientStop Color="#FFFFFF"
+                                   Offset="0.1"/>
+                     <GradientStop Color="#FFFFFF"
+                                   Offset="1.0"/>
+              </LinearGradientBrush>
        </ContentPage.Background>
 
        <VerticalStackLayout Padding="20"
